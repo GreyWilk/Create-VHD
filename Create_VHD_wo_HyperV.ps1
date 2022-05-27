@@ -27,9 +27,9 @@ $InitializedDisk = Initialize-Disk -UniqueId (Get-Disk | Where-Object { $_.Locat
 ## Find first unused drive letter
 $DriveLetterToUse = $null
 $UsedDriveLetters = ((Get-Volume | Select-Object DriveLetter).DriveLetter)
-Foreach ($DriveLetter in "DEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray()) {
-    If ($UsedDriveLetters -notcontains $DriveLetter) {
-        $DriveLetterToUse = $DriveLetter
+68..90 | ForEach-Object {
+    If ($UsedDriveLetters -notcontains [char]$PSItem) {
+        $DriveLetterToUse = [char]$PSItem
         break
     }
 }
